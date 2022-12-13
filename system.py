@@ -32,25 +32,30 @@ class Employee:
 
     def take_holiday(self, payout: bool = False) -> None:
         """Take a single holiday or a payout vacation"""
-
-        remaining = self.vacation_days
+        # del remaining, add block try, except
         if payout:
-            if self.vacation_days < 5:
-                msg = f"{self} have not enough vacation days. " \
-                      f"Remaining days: %d. Requested: %d" % (remaining, 5)
-                raise ValueError(msg)
-            self.vacation_days -= 5
-            msg = "Taking a holiday. Remaining vacation days: %d" % remaining
-            logger.info(msg)
+            try:
+                if self.vacation_days < 5:
+                    msg = f"{self} have not enough vacation days. " \
+                          f"Remaining days: %d. Requested: %d" % (self.vacation_days, 5)
+                    raise ValueError(msg)
+                self.vacation_days -= 5
+                msg = f"{self} taking a holiday. Remaining vacation days: %d" % self.vacation_days
+                logger.info(msg)
+            except ValueError as er:
+                logger.info(er)
         else:
-            if self.vacation_days < 1:
-                remaining = self.vacation_days
-                msg = f"{self} have not enough vacation days. " \
-                      f"Remaining days: %d. Requested: %d" % (remaining, 1)
-                raise ValueError(msg)
-            self.vacation_days -= 1
-            msg = "Taking a payout. Remaining vacation days: %d" % remaining
-            logger.info(msg)
+            try:
+                if self.vacation_days < 1:
+                    remaining = self.vacation_days
+                    msg = f"{self} have not enough vacation days. " \
+                          f"Remaining days: %d. Requested: %d" % (self.vacation_days, 1)
+                    raise ValueError(msg)
+                self.vacation_days -= 1
+                msg = f"{self} taking a payout. Remaining vacation days: %d" % self.vacation_days
+                logger.info(msg)
+            except ValueError as er:
+                logger.info(er)
 
 
 # noinspection PyTypeChecker
