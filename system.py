@@ -126,6 +126,8 @@ class Company:
             logger.info(msg)
 
     def pay_all(self, employees: list) -> None:
+        """Pay all the employees in this company"""
+        
         for employee in employees:
             self.pay(employee)
 
