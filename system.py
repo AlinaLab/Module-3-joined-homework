@@ -23,7 +23,7 @@ class Employee:
 
     @property
     def fullname(self):
-        return self.first_name, self.last_name
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self) -> str:
         """Return a string version of an instance"""
@@ -117,12 +117,12 @@ class Company:
             msg = (
                 "Paying monthly salary of %.2f to %s"
             ) % (employee.salary, employee)
-            logger.info(f"Paying monthly salary to {employee}")
+            logger.info(msg)
 
         if isinstance(employee, HourlyEmployee):
             msg = (
-                "Paying %s hourly rate of %.2f for %d hours"
-            ) % (employee, employee.hourly_rate, employee.amount)
+                "Paying %s hourly rate of %.2f for %d hours. Total: %.2f"
+            ) % (employee, employee.hourly_rate, employee.amount, employee.hourly_rate*employee.amount)
             logger.info(msg)
 
     def pay_all(self) -> None:
