@@ -1,6 +1,5 @@
 """
 A very advanced employee management system
-
 """
 
 import logging
@@ -145,7 +144,7 @@ class Company:
 
     def pay_all(self, employees: list) -> None:
         """Pay all the employees in this company"""
-        
+
         for employee in employees:
             self.pay(employee)
 
@@ -163,3 +162,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
