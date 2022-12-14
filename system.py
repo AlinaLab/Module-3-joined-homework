@@ -79,8 +79,21 @@ class SalariedEmployee(Employee):
 class Company:
     """A company representation"""
 
-    title: str
-    employees: list[Employee] = []
+    def __init__(self, title: str, employees: list = []):
+        self.title = title
+        self.employees = employees
+
+    def __str__(self):
+        return self.title
+
+    def __repr__(self):
+        return f'Company (title = {self.title}, employees = {self.employees})'
+
+    def add_to_company(self, employee: Employee):
+        if isinstance(employee, Employee):
+            self.employees.append(employee)
+        if isinstance(employee, list):
+            self.employees += employee
 
     def get_ceos(self) -> list[Employee]:
         """Return employees list with role of CEO"""
@@ -88,7 +101,7 @@ class Company:
         result = []
         for employee in self.employees:
             if employee.role == "CEO":
-                result.append(employee)
+                result.append(employee.fullname)
         return result
 
     def get_managers(self) -> list[Employee]:
@@ -97,7 +110,7 @@ class Company:
         result = []
         for employee in self.employees:
             if employee.role == "manager":
-                result.append(employee)
+                result.append(employee.fullname)
         return result
 
     def get_developers(self) -> list[Employee]:
@@ -106,7 +119,7 @@ class Company:
         result = []
         for employee in self.employees:
             if employee.role == "dev":
-                result.append(employee)
+                result.append(employee.fullname)
         return result
 
     @staticmethod
