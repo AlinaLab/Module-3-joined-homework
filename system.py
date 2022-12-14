@@ -141,4 +141,14 @@ class Company:
     def pay_all(self) -> None:
         """Pay all the employees in this company"""
 
+        for employee in employees:
+            self.pay(employee)
+            return f"Pay {employee.fullname} {self.pay(employee)}"
+
         # TODO: implement this method
+
+
+employee_1 = Employee(first_name="Ihor", last_name="Kozakov", role="CEO")
+employee_2 = Employee(first_name="Georg", last_name="Kirichenko", role="manager")
+employee_3 = Employee(first_name="Olha", last_name="Okpenko", role="dev")
+employees = [employee_1, employee_2, employee_3]
