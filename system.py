@@ -46,7 +46,7 @@ class Employee:
         else:
             try:
                 if self.vacation_days < 1:
-                    remaining = self.vacation_days
+                    # remaining = self.vacation_days
                     msg = f"{self} have not enough vacation days. " \
                           f"Remaining days: %d. Requested: %d" % (self.vacation_days, 1)
                     raise ValueError(msg)
@@ -162,4 +162,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
