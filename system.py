@@ -22,6 +22,8 @@ class Employee:
 
     @property
     def fullname(self):
+        """Return fullname of employee"""
+
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self) -> str:
@@ -94,6 +96,8 @@ class Company:
         return f'Company (title = {self.title}, employees = {self.employees})'
 
     def add_to_company(self, employee: Employee):
+        """Add employee to the company"""
+
         if isinstance(employee, Employee):
             self.employees.append(employee)
         if isinstance(employee, list):
@@ -139,7 +143,9 @@ class Company:
         if isinstance(employee, HourlyEmployee):
             msg = (
                 "Paying %s hourly rate of %.2f for %d hours. Total: %.2f"
-            ) % (employee, employee.hourly_rate, employee.amount, employee.hourly_rate*employee.amount)
+            ) % (employee, employee.hourly_rate, employee.amount,
+            employee.hourly_rate*employee.amount
+            )
             logger.info(msg)
 
     def pay_all(self, employees: list) -> None:
@@ -148,17 +154,18 @@ class Company:
         for employee in employees:
             self.pay(employee)
 
-        # TODO: implement this method
 
 
 def main():
+    """For tests"""
+
     employee_1 = HourlyEmployee(first_name="Ihor", last_name="Kozakov", role="CEO", amount=20)
     employee_2 = SalariedEmployee(first_name="Georg", last_name="Kirichenko", role="manager")
     employee_3 = HourlyEmployee(first_name="Olha", last_name="Okpenko", role="dev", amount=60)
     employees = [employee_1, employee_2, employee_3]
     company = Company(title='google', employees=employees)
     company.pay_all(employees)
-
+    
 
 if __name__ == "__main__":
     main()
