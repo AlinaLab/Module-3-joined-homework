@@ -4,6 +4,7 @@ A very advanced employee management system
 
 import logging
 from dataclasses import dataclass
+from typing import Union
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -93,7 +94,7 @@ class Company:
     def __repr__(self):
         return f'Company (title = {self.title}, employees = {self.employees})'
 
-    def add_to_company(self, employee: Employee):
+    def add_to_company(self, employee: Union[Employee, list]):
         if isinstance(employee, Employee):
             self.employees.append(employee)
         if isinstance(employee, list):
@@ -142,10 +143,10 @@ class Company:
             ) % (employee, employee.hourly_rate, employee.amount, employee.hourly_rate*employee.amount)
             logger.info(msg)
 
-    def pay_all(self, employees: list) -> None:
+    def pay_all(self) -> None:
         """Pay all the employees in this company"""
 
-        for employee in employees:
+        for employee in self.employees:
             self.pay(employee)
 
         # TODO: implement this method
@@ -156,7 +157,7 @@ def main():
     employee_3 = HourlyEmployee(first_name="Olha", last_name="Okpenko", role="dev", amount=60)
     employees = [employee_1, employee_2, employee_3]
     company = Company(title='google', employees=employees)
-    company.pay_all(employees)
+    company.pay_all()
 
 
 if __name__ == "__main__":
