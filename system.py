@@ -1,6 +1,5 @@
 """
 A very advanced employee management system
-
 """
 
 import logging
@@ -48,7 +47,7 @@ class Employee:
         else:
             try:
                 if self.vacation_days < 1:
-                    remaining = self.vacation_days
+                    # remaining = self.vacation_days
                     msg = f"{self} have not enough vacation days. " \
                           f"Remaining days: %d. Requested: %d" % (self.vacation_days, 1)
                     raise ValueError(msg)
@@ -149,7 +148,6 @@ class Company:
 
         for employee in self.employees:
             self.pay(employee)
-
 
         # TODO: implement this method
 
