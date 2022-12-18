@@ -150,7 +150,6 @@ class Company:
 
         # TODO: implement this method
 
-
 def main():
     employee_1 = HourlyEmployee(first_name="Ihor", last_name="Kozakov", role="CEO", amount=20)
     employee_2 = SalariedEmployee(first_name="Georg", last_name="Kirichenko", role="manager")
