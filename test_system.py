@@ -116,3 +116,7 @@ class TestSystem(unittest.TestCase):
         self.assertEqual(self.company.pay(self.employee1), None)
         self.assertEqual(self.company.pay(self.employee2), None)
         self.assertEqual(self.company.pay(self.employee3), None)
+        
+        
+if __name__ == '__main__':
+    unittest.main()
