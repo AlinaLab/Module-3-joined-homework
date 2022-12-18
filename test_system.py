@@ -67,7 +67,13 @@ class TestSystem(unittest.TestCase):
         self.assertEqual(self.company.title, 'google')
 
     def test_company_repr(self):
-        assert repr(self.company) == "Company (title = google, employees = [HourlyEmployee(first_name='Ihor', last_name='Kozakov', role='CEO', vacation_days=25, amount=20, hourly_rate=50), SalariedEmployee(first_name='Georg', last_name='Kirichenko', role='manager', vacation_days=25, salary=5000), HourlyEmployee(first_name='Olha', last_name='Okpenko', role='dev', vacation_days=25, amount=60, hourly_rate=50)])"
+        assert repr(self.company) == "Company (title = google, employees = [HourlyEmployee(first_name='Ihor', " \
+                                     "last_name='Kozakov', " \
+                                     "role='CEO', vacation_days=25, amount=0, hourly_rate=50), " \
+                                     "SalariedEmployee(first_name='Georg', last_name='Kirichenko', role='manager'," \
+                                     " vacation_days=25, salary=5000), " \
+                                     "HourlyEmployee(first_name='Olha', last_name='Okpenko', role='dev'," \
+                                     " vacation_days=60, amount=0, hourly_rate=50)])"
 
     def test_company_add_to_company(self):
         """Тест на перевірку чи додає функція до списку працівників компанії"""
@@ -110,4 +116,3 @@ class TestSystem(unittest.TestCase):
         self.assertEqual(self.company.pay(self.employee1), None)
         self.assertEqual(self.company.pay(self.employee2), None)
         self.assertEqual(self.company.pay(self.employee3), None)
-
