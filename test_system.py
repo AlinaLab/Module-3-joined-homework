@@ -67,19 +67,17 @@ class TestSystem(unittest.TestCase):
         self.assertEqual(self.company.title, 'google')
 
     def test_company_repr(self):
-        assert repr(
-            self.company) == "Company (title = google, employees = [HourlyEmployee(first_name='Ihor', last_name='Kozakov', role='CEO', vacation_days=25, amount=20, hourly_rate=50), SalariedEmployee(first_name='Georg', last_name='Kirichenko', role='manager', vacation_days=25, salary=5000), HourlyEmployee(first_name='Olha', last_name='Okpenko', role='dev', vacation_days=25, amount=60, hourly_rate=50)])"
+        assert repr(self.company) == "Company (title = google, employees = [HourlyEmployee(first_name='Ihor', last_name='Kozakov', role='CEO', vacation_days=25, amount=20, hourly_rate=50), SalariedEmployee(first_name='Georg', last_name='Kirichenko', role='manager', vacation_days=25, salary=5000), HourlyEmployee(first_name='Olha', last_name='Okpenko', role='dev', vacation_days=25, amount=60, hourly_rate=50)])"
 
     def test_company_add_to_company(self):
         """Тест на перевірку чи додає функція до списку працівників компанії"""
 
-        employee = employee_1.fullname()
-        container = ["Ihor Kozakov"]
-        msg = f"employee isn't in the list"
-        if isinstance(employee, Employee):
-            self.assertIn(employee, container, msg)
-        if isinstance(employee, list):
-            self.assertIn(employee, container, msg)
+        self.employees.append(self.employee1)
+        self.employees.append(self.employee2)
+        self.employees.append(self.employee3)
+        self.assertIn(self.employee1, self.employees)
+        self.assertIn(self.employee2, self.employees)
+        self.assertIn(self.employee3, self.employees)
 
     def test_get_ceos(self):
         """Tests get_ceos method"""
@@ -109,11 +107,7 @@ class TestSystem(unittest.TestCase):
     def test_company_pay_all(self):
         """Тест на перевірку чи повертає функція інформацію по усім працівникам компанії одночасно"""
 
-        with self.assertLogs("loggers", level="INFO") as logs:
-            logging.getLogger("root").info("Paying Ihor Kozakov hourly rate of 50.00 for 20 hours. Total: 1000.00")
-            logging.getLogger("root").info("Paying monthly salary of 5000.00 to Georg Kirichenko")
-            logging.getLogger("root").info("Paying Olha Okpenko hourly rate of 50.00 for 60 hours. Total: 3000.00")
-        self.assertEqual(logs.output, ["Paying Ihor Kozakov hourly rate of 50.00 for 20 hours. Total: 1000.00",
-                               "Paying monthly salary of 5000.00 to Georg Kirichenko",
-                               "Paying Olha Okpenko hourly rate of 50.00 for 60 hours. Total: 3000.00"
-                               ])
+        self.assertEqual(self.company.pay(self.employee1), None)
+        self.assertEqual(self.company.pay(self.employee2), None)
+        self.assertEqual(self.company.pay(self.employee3), None)
+
